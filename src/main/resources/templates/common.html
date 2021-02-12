@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="pageHead">
+    <!--common-->
+    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- 教师用户 页面左侧部分开始-->
+    <div th:fragment="leftTeacher" class="left-side sticky-left-side">
+
+        <!--显示侧边栏时显示的logo-->
+        <div class="logo">
+            <a href="homePage.html"><img src="images/logo.png" alt=""></a>
+        </div>
+
+        <!-- 隐藏侧边栏时显示的logo -->
+        <div class="logo-icon text-center">
+            <a href="homePage.html"><img src="images/logo_icon.png" alt=""></a>
+        </div>
+
+        <div class="left-side-inner">
+
+            <!-- 头部用户个人操作 -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="../static/images/photos/user-avatar.png" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">管理员</a></h4>
+                        <span>"你好啊..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">账户信息</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="#"><i class="fa fa-user"></i> <span>用户资料 </span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+                </ul>
+            </div>
+
+            <!--左侧边栏导航开始-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>上网课</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">搜索课程</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>做项目</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">搜索项目</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>用户信息</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">我的个人信息</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>我的课程</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">查看我的课程</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="myCollection.html"><i class="fa fa-bullhorn"></i> <span>我的收藏</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">查看我的收藏</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="myProject.html"><i class="fa fa-envelope"></i> <span>我的项目</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">查看我的项目</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--左侧边栏导航结束-->
+        </div>
+    </div>
+    <!-- 页面左侧部分结束-->
+
+    <!-- 学生用户 页面左侧部分开始-->
+    <div th:fragment="leftStudent" class="left-side sticky-left-side">
+
+        <!--显示侧边栏时显示的logo-->
+        <div class="logo">
+            <a href="homePage.html"><img src="images/logo.png" alt=""></a>
+        </div>
+
+        <!-- 隐藏侧边栏时显示的logo -->
+        <div class="logo-icon text-center">
+            <a href="homePage.html"><img src="images/logo_icon.png" alt=""></a>
+        </div>
+
+        <div class="left-side-inner">
+
+            <!-- 头部用户个人操作 -->
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="../static/images/photos/user-avatar.png" class="media-object">
+                    <div class="media-body">
+                        <h4><a href="#">管理员</a></h4>
+                        <span>"你好啊..."</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">账户信息</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="#"><i class="fa fa-user"></i> <span>用户资料 </span></a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+                </ul>
+            </div>
+
+            <!--左侧边栏导航开始-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>上网课</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">搜索课程</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>做项目</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">搜索项目</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>用户信息</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">我的个人信息</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>我的课程</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">查看我的课程</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="myCollection.html"><i class="fa fa-bullhorn"></i> <span>我的收藏</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">查看我的收藏</a></li>
+                    </ul>
+                </li>
+                <li class="menu-list"><a href="myProject.html"><i class="fa fa-envelope"></i> <span>我的项目</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="">查看我的项目</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--左侧边栏导航结束-->
+        </div>
+    </div>
+    <!-- 页面左侧部分结束-->
+
+    <!-- 页面头部开始-->
+    <div th:fragment="headPart" class="header-section">
+
+        <!--开关按钮开始-->
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+        <!--开关按钮结束-->
+
+        <!--搜索开始-->
+        <form class="searchform" action="https://www.baidu.com" method="post">
+            <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+        </form>
+        <!--搜索结束-->
+
+        <!--通知菜单开始 -->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img src="images/photos/user-avatar.png" alt="" />
+                        管理员
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li><a href="#"><i class="fa fa-user"></i>  用户信息</a></li>
+                        <li><a href="#"><i class="fa fa-cog"></i>  设置</a></li>
+                        <li><a href="#"><i class="fa fa-sign-out"></i> 登出</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+        <!--通知菜单结束 -->
+
+    </div>
+    <!-- 页面头部结束-->
+
+<!-- 最后把js文件的页面加载速度 -->
+<script src="../static/js/jquery-1.10.2.min.js"></script>
+<script src="../static/js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="../static/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/modernizr.min.js"></script>
+<script src="../static/js/jquery.nicescroll.js"></script>
+
+<!--饼形图-->
+<script src="../static/js/easypiechart/jquery.easypiechart.js"></script>
+<script src="../static/js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline图表-->
+<script src="../static/js/sparkline/jquery.sparkline.js"></script>
+<script src="../static/js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="../static/js/iCheck/jquery.icheck.js"></script>
+<script src="../static/js/icheck-init.js"></script>
+
+<!-- jQuery 浮标图表-->
+<script src="../static/js/flot-chart/jquery.flot.js"></script>
+<script src="../static/js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="../static/js/flot-chart/jquery.flot.resize.js"></script>
+<script src="../static/js/flot-chart/jquery.flot.pie.resize.js"></script>
+<script src="../static/js/flot-chart/jquery.flot.selection.js"></script>
+<script src="../static/js/flot-chart/jquery.flot.stack.js"></script>
+<script src="../static/js/flot-chart/jquery.flot.time.js"></script>
+<script src="../static/js/main-chart.js"></script>
+
+<!--日历-->
+<script src="../static/js/calendar/clndr.js"></script>
+<script src="../static/js/calendar/evnt.calendar.init.js"></script>
+<script src="../static/js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--常见的所有页面的脚本-->
+<script src="../static/js/scripts.js"></script>
+
+</body>
+</html>

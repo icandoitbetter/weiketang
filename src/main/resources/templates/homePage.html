@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <title>AdminX</title>
+
+    <!--图表样式-->
+    <link href="js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+    <link href="js/iCheck/skins/square/square.css" rel="stylesheet">
+    <link href="js/iCheck/skins/square/red.css" rel="stylesheet">
+    <link href="js/iCheck/skins/square/blue.css" rel="stylesheet">
+
+    <!--日历样式-->
+    <link href="css/clndr.css" rel="stylesheet">
+    <!--common-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- 页面左侧部分开始-->
+    <div th:replace="common :: leftStudent"></div>
+    <!-- 页面左侧部分结束-->
+
+    <!--主要内容开始-->
+    <div class="main-content" >
+
+        <!-- 页面头部开始-->
+        <div th:replace="common :: headPart"></div>
+        <!-- 页面头部结束-->
+
+        <!-- 页面标题开始-->
+        <div class="page-heading">
+            这里是页面标题部分。课程浏览。
+        </div>
+        <!-- 页面标题结束-->
+
+        <!--页面正文开始-->
+        <div class="wrapper">
+            这里是页面正文部分。
+        </div>
+        <!--页面正文结束-->
+
+        <!--页脚部分开始-->
+        <footer>
+            这里是页脚部分。
+        </footer>
+        <!--页脚部分结束-->
+
+    </div>
+    <!--主要内容结束-->
+</section>
+
+<!-- 最后把js文件的页面加载速度 -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.nicescroll.js"></script>
+
+<!--饼形图-->
+<script src="js/easypiechart/jquery.easypiechart.js"></script>
+<script src="js/easypiechart/easypiechart-init.js"></script>
+
+<!--Sparkline图表-->
+<script src="js/sparkline/jquery.sparkline.js"></script>
+<script src="js/sparkline/sparkline-init.js"></script>
+
+<!--icheck -->
+<script src="js/iCheck/jquery.icheck.js"></script>
+<script src="js/icheck-init.js"></script>
+
+<!-- jQuery 浮标图表-->
+<script src="js/flot-chart/jquery.flot.js"></script>
+<script src="js/flot-chart/jquery.flot.tooltip.js"></script>
+<script src="js/flot-chart/jquery.flot.resize.js"></script>
+<script src="js/flot-chart/jquery.flot.pie.resize.js"></script>
+<script src="js/flot-chart/jquery.flot.selection.js"></script>
+<script src="js/flot-chart/jquery.flot.stack.js"></script>
+<script src="js/flot-chart/jquery.flot.time.js"></script>
+<script src="js/main-chart.js"></script>
+
+<!--日历-->
+<script src="js/calendar/clndr.js"></script>
+<script src="js/calendar/evnt.calendar.init.js"></script>
+<script src="js/calendar/moment-2.2.1.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+<!--常见的所有页面的脚本-->
+<script src="js/scripts.js"></script>
+
+</body>
+</html>
