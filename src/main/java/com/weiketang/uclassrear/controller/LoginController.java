@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class pageRouteController {
+public class LoginController {
     @Autowired
     StudentServiceImp studentServiceImp01;
     @Autowired
@@ -46,11 +46,13 @@ public class pageRouteController {
             session.setAttribute("userRole", "TEACHER");
         }
 
-        return "redirect:/main.html";
+        return "redirect:/lectureSearch.html";
     }
 
-    @GetMapping("main.html")
+    //主页就是 lectureSearch.html；
+    @GetMapping("lectureSearch.html")
     public String goToHomePage(){
-        return "homePage";
+        return "lectureSearch/lectureSearch";
     }
+
 }
