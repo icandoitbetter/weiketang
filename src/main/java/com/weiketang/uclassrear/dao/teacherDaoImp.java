@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class teacherDaoImp implements teacherDao{
+public class TeacherDaoImp implements TeacherDao {
     @Autowired
     private MongoTemplate mongoTemplate;
 

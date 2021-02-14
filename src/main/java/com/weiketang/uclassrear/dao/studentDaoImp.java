@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class studentDaoImp implements studentDao{
+public class StudentDaoImp implements StudentDao {
     @Autowired
     private MongoTemplate mongoTemplate;
 

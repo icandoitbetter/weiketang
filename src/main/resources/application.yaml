@@ -3,3 +3,8 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/weiketang
       username: userAdmin
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB

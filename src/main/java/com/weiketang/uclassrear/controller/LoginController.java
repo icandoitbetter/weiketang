@@ -39,6 +39,7 @@ public class LoginController {
 
         //session保存当前用户浏览器与服务器的会话信息，类似于cookie？
         session.setAttribute("loginUser", user);
+        session.setAttribute("loginUserId", user.userId);
         if(isStudentUser == true){
             session.setAttribute("userRole", "STUDENT");
         }

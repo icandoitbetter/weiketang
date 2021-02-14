@@ -39,25 +39,6 @@
         </div>
 
         <div class="left-side-inner">
-
-            <!-- 头部用户个人操作 -->
-            <div class="visible-xs hidden-sm hidden-md hidden-lg">
-                <div class="media logged-user">
-                    <img alt="" src="../static/images/photos/user-avatar.png" class="media-object">
-                    <div class="media-body">
-                        <h4><a href="#">管理员</a></h4>
-                        <span>"你好啊..."</span>
-                    </div>
-                </div>
-
-                <h5 class="left-nav-title">账户信息</h5>
-                <ul class="nav nav-pills nav-stacked custom-nav">
-                    <li><a href="#"><i class="fa fa-user"></i> <span>用户资料 </span></a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li>
-                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
-                </ul>
-            </div>
-
             <!--左侧边栏导航开始-->
             <ul class="nav nav-pills nav-stacked custom-nav">
                 <li class="menu-list nav-active"><a href=""><i class="fa fa-home"></i> <span>上网课</span></a>
@@ -94,15 +75,15 @@
     <!-- 页面头部开始-->
     <div th:fragment="headPart" class="header-section">
 
-        <!--开关按钮开始-->
+        <!--左侧边栏隐藏开关按钮开始-->
         <a class="toggle-btn"><i class="fa fa-bars"></i></a>
-        <!--开关按钮结束-->
+        <!--左侧边栏隐藏开关按钮结束-->
 
-        <!--搜索开始-->
+        <!--搜索框开始-->
         <form class="searchform" action="https://www.baidu.com" method="post">
             <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
         </form>
-        <!--搜索结束-->
+        <!--搜索框结束-->
 
         <!--通知菜单开始 -->
         <div class="menu-right">
@@ -110,7 +91,7 @@
                 <li>
                     <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <img src="images/photos/user-avatar.png" alt="" />
-                        管理员
+                            管理员
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
