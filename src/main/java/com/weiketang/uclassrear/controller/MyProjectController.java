@@ -19,8 +19,8 @@ import java.io.IOException;
 
 @Slf4j
 @Controller
-public class myProjectController {
-    private static final Logger logger = LoggerFactory.getLogger(myProjectController.class);
+public class MyProjectController {
+    private static final Logger logger = LoggerFactory.getLogger(MyProjectController.class);
     @Autowired
     FileService fileService;
 

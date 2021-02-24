@@ -1,6 +1,6 @@
 package com.weiketang.uclassrear.controller;
 
-import com.weiketang.uclassrear.entity.loginUser;
+import com.weiketang.uclassrear.entity.LoginUser;
 import com.weiketang.uclassrear.service.StudentServiceImp;
 import com.weiketang.uclassrear.service.TeacherServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class LoginController {
 
     // 重定向，防止表单重复提交；
     @PostMapping("/login")
-    public String homePageRedirect(loginUser user, HttpSession session, Model model){
+    public String homePageRedirect(LoginUser user, HttpSession session, Model model){
         if(user.userId.length() < 10){
             model.addAttribute("msg", "用户名不存在");
             return "login";

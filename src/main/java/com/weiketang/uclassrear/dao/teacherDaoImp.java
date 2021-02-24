@@ -1,7 +1,7 @@
 package com.weiketang.uclassrear.dao;
 
 import com.weiketang.uclassrear.entity.Teacher;
-import com.weiketang.uclassrear.entity.loginUser;
+import com.weiketang.uclassrear.entity.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -14,7 +14,7 @@ public class TeacherDaoImp implements TeacherDao {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public Teacher findByTeacherId(loginUser user) {
+    public Teacher findByTeacherId(LoginUser user) {
         Query query = new Query(Criteria.where("teacherId").is(user.userId));
         Teacher teacher = mongoTemplate.findOne(query, Teacher.class);
         return teacher;

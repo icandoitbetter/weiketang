@@ -1,8 +1,8 @@
 package com.weiketang.uclassrear.dao;
 
 import com.weiketang.uclassrear.entity.Teacher;
-import com.weiketang.uclassrear.entity.loginUser;
+import com.weiketang.uclassrear.entity.LoginUser;
 
 public interface TeacherDao {
-    Teacher findByTeacherId(loginUser user);
+    Teacher findByTeacherId(LoginUser user);
 }

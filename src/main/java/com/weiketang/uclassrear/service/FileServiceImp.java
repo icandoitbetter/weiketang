@@ -1,7 +1,7 @@
 package com.weiketang.uclassrear.service;
 
 import com.weiketang.uclassrear.dao.MyFileDao;
-import com.weiketang.uclassrear.entity.myFile;
+import com.weiketang.uclassrear.entity.MyFile;
 import com.weiketang.uclassrear.exception.FileException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -31,7 +31,9 @@ public class FileServiceImp implements FileService {
         String originalFilename = file.getOriginalFilename();
         file.transferTo(new File(storePath + originalFilename));
 
-        myFile fileInfo = new myFile();
+
+        MyFile fileInfo = new MyFile();
+
         fileInfo.setUploaderId(session.getAttribute("loginUserId").toString());
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         fileInfo.setUploaderDate(df.format(new Date()));

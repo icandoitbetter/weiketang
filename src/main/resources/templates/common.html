@@ -11,7 +11,11 @@
 
         <!--日历样式-->
         <link href="css/clndr.css" th:href="@{/css/clndr.css}" rel="stylesheet">
-        <!--common-->
+
+        <!--数据表样式-->
+        <link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
+
+        <!--公共样式-->
         <link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
         <link href="css/style-responsive.css" th:href="@{/css/style-responsive.css}" rel="stylesheet">
 
@@ -108,6 +112,18 @@
     </div>
     <!-- 页面头部结束-->
 
+    <!-- 我的课程——老师 页面头部的几个按钮开始-->
+    <section th:fragment="MyLecture_Teahcer_CommonBotton" class="panel">
+        <div class="panel-body">
+            <button class="btn btn-default" type="button"><a th:href="@{/projectSearch}"> <span style="color: black; ">学生列表</span></a></button>
+            <button class="btn btn-primary" type="button"><a th:href="@{/projectSearch}"><span style="color: black; ">课件</a></button>
+            <button class="btn btn-success" type="button"><a th:href="@{/projectSearch}"><span style="color: black; ">测验/作业</a></button>
+            <button class="btn btn-info" type="button"><a th:href="@{/onlineExamTeacher}"><span style="color: black; ">考试</a></button>
+            <button class="btn btn-warning" type="button"><a th:href="@{/projectSearch}"><span style="color: black; ">评分标准</a></button>
+        </div>
+    </section>
+    <!-- 我的课程——老师 页面头部的几个按钮结束-->
+
     <!-- html文件公共尾部开始-->
     <div th:fragment="commontail">
         <!-- 最后把js文件的页面加载速度 -->
@@ -145,6 +161,10 @@
         <script th:src="@{/js/calendar/evnt.calendar.init.js}"></script>
         <script th:src="@{/js/calendar/moment-2.2.1.js}"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+        <!--数据表-->
+        <script type="text/javascript" th:src="@{/js/data-tables/jquery.dataTables.js}"></script>
+        <script type="text/javascript" th:src="@{/js/data-tables/DT_bootstrap.js}"></script>
 
         <!--常见的所有页面的脚本-->
         <script th:src="@{/js/scripts.js}"></script>

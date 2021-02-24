@@ -1,6 +1,6 @@
 package com.weiketang.uclassrear.dao;
 
-import com.weiketang.uclassrear.entity.myFile;
+import com.weiketang.uclassrear.entity.MyFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -13,8 +13,8 @@ public class MyFileDaoImp implements MyFileDao {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public boolean insertFileInfo(myFile fileInfo) {
-        myFile result = mongoTemplate.insert(fileInfo);
+    public boolean insertFileInfo(MyFile fileInfo) {
+        MyFile result = mongoTemplate.insert(fileInfo);
         if(result != null){
             return true;
         }
@@ -22,9 +22,9 @@ public class MyFileDaoImp implements MyFileDao {
     }
 
     @Override
-    public boolean alreadyExistInDB(myFile fileInfo) {
-        Query query = new Query(Criteria.where("storePath").is(fileInfo.getStorePath()));
-        myFile result = mongoTemplate.findOne(query, myFile.class);
+    public boolean alreadyExistInDB(MyFile fileInfo) {
+        Query query = new Query(Criteria.where("storePath").is(fileInfo.getStorePath()).and("fileName").is(fileInfo.getFileName()));
+        MyFile result = mongoTemplate.findOne(query, MyFile.class);
         if (result != null){
             return true;
         }
@@ -32,17 +32,18 @@ public class MyFileDaoImp implements MyFileDao {
     }
 
     @Override
-    public boolean updateFileInfo(myFile fileInfo) {
+    public boolean updateFileInfo(MyFile fileInfo) {
         if(this.alreadyExistInDB(fileInfo) == true){
-            return this.updateFileInfo(fileInfo);
+            return false;
         }
+
         return this.insertFileInfo(fileInfo);
     }
 
     @Override
     public String findFilePathByFileName(String fileName) {
         Query query = new Query(Criteria.where("fileName").is(fileName));
-        myFile result = mongoTemplate.findOne(query, myFile.class);
+        MyFile result = mongoTemplate.findOne(query, MyFile.class);
         if(result != null){
             return result.getStorePath();
         }

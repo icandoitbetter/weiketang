@@ -1,7 +1,7 @@
 package com.weiketang.uclassrear.service;
 
-import com.weiketang.uclassrear.entity.loginUser;
+import com.weiketang.uclassrear.entity.LoginUser;
 
 public interface TeacherService {
-    boolean hasTeacherLoginSuccess(loginUser user);
+    boolean hasTeacherLoginSuccess(LoginUser user);
 }
