@@ -8,8 +8,6 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>AdminX</title>
-
     <!--html文件头部开始-->
     <div th:replace="common :: commonheader"></div>
     <!--html文件头部结束-->
@@ -37,9 +35,61 @@
 
         <!--页面正文开始-->
         <div class="wrapper">
-            这里是页面正文部分。
+            <div class="row">
+                <div class="col-lg-12">
+                    <header class="panel-heading">
+                        单选题（每题2分）
+                        <span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                            <a class="fa fa-times" href="javascript:;"></a>
+                        </span>
+                    </header>
+                    <section class="panel" th:each="question,stat:${questions}">
+                        <div class="panel-body" >
+                            <div class="row" >
+                                <div class="col-md-6" >
+                                    <form class="form-horizontal bucket-form" method="get" >
+                                        <h5 th:text="${#maps.size(question)}"></h5>
+                                        <div class="form-group">
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${question.optionA}">Black Checkbox </label>
+                                                    </div>
+                                                </div>
+                                                <div class="minimal-red single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${question.optionB}">Red Checkbox </label>
+                                                    </div>
+                                                </div>
+                                                <div class="minimal-green single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${question.optionC}">Green Checkbox </label>
+                                                    </div>
+                                                </div>
+                                                <div class="minimal-blue single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${question.optionD}">Blue Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
         <!--页面正文结束-->
+
 
         <!--页脚部分开始-->
         <footer>

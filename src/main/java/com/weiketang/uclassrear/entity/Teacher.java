@@ -1,17 +1,13 @@
 package com.weiketang.uclassrear.entity;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-public class Teacher {
-    public String nickName;
-    public String password;
-    public String teacherName;
-    public String institute;
-    public String role;
-    public String teacherId;
-    public String phone;
-    public String email;
-    public String gender;
-    public String[] teachCourseId;
+@Document(collection = "user")
+public class Teacher extends User {
+
+    public Teacher(){
+        this.setUserType("TEACHER");
+    }
 }

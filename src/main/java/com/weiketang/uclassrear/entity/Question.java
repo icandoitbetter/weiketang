@@ -2,21 +2,30 @@ package com.weiketang.uclassrear.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Data
+@Document(collection = "question")
 public class Question {
     @Id
-    public String questionId;
+    private String _id;
 
-    public String paperId;
-    public String subject;
-    public String authorId;
-    public String type;
+    private String questionId = "null";
+    private String authorId = "null";
+    private String questionType = "null";
 
-    public String question;
-    public String answer;
-    public String analysis;
+    private String subject = "null";
+    private String content = "null";
+    private String answer = "null";
+    private String analysis = "null";
 
-    public int score;
+    private String optA = "null";
+    private String optB = "null";
+    private String optC = "null";
+    private String optD = "null";
+
+    private int score = 0;
 
 }

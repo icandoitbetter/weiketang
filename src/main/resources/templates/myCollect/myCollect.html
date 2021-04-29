@@ -8,8 +8,6 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>AdminX</title>
-
     <!--html文件头部开始-->
     <div th:replace="common :: commonheader"></div>
     <!--html文件头部结束-->
@@ -38,6 +36,59 @@
         <!--页面正文开始-->
         <div class="wrapper">
             这里是页面正文部分。
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Dynamic Table
+                            <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+                                        <th>_id </th>
+
+                                        <th>modelId </th>
+                                        <th>publisherId </th>
+                                        <th>modelType </th>
+
+                                        <th>title </th>
+                                        <th>subject </th>
+                                        <th>description </th>
+                                        <th>term </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="model, stat:${models}">
+                                    <tr class="gradeX">
+                                        <td th:text="${model._id}"></td>
+
+                                        <td th:text="${model.modelId}"></td>
+                                        <td th:text="${model.publisherId}"></td>
+                                        <td th:text="${model.modelType}"></td>
+
+                                        <td th:text="${model.title}"></td>
+                                        <td th:text="${model.subject}"></td>
+                                        <td th:text="${model.description}"></td>
+                                        <td th:text="${model.term}"></td>
+
+
+
+
+                                        <!--<td class="center hidden-phone" th:text="${}"></td>
+                                        <td class="center hidden-phone" th:text="${}"></td>&ndash;&gt;-->
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
         <!--页面正文结束-->
 

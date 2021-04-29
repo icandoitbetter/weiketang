@@ -2,22 +2,15 @@ package com.weiketang.uclassrear.entity;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-public class Exam {
-    @Id
-    private String examId;
+@Document(collection = "exam")
+public class Exam extends MyActivity{
+    private String term = "null";
+    private int fullScore = 0;
 
-    private String publisherId;
-    private String courseId;
-    private String examTitle;
-    private String examDescription;
-    private int fullScore;
-    private String deadline;
-    private String term;
-    private String tips;
-
-    public String toString(){
-        return this.term + this.examTitle;
+    public Exam(){
+        this.setActivityType("EXAM");
     }
 }

@@ -1,66 +1,99 @@
 package com.weiketang.uclassrear.controller;
 
-import com.weiketang.uclassrear.service.FileService;
+import com.weiketang.uclassrear.entity.*;
+import com.weiketang.uclassrear.service.MyProjectService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @Controller
 public class MyProjectController {
-    private static final Logger logger = LoggerFactory.getLogger(MyProjectController.class);
     @Autowired
-    FileService fileService;
+    MyProjectService myProjectService;
 
-    @GetMapping("/myProject")
-    public String myProject(){
-        return "myProject/myProject";
+    @GetMapping("/createOneProject")
+    public String createOneProject(HttpSession session){
+
+        String publisherId = session.getAttribute("userId").toString();
+        MyProject project = new MyProject();   /*请前端传入用户输入的项目信息；*/
+        myProjectService.createOneProject(publisherId, project);
+
+        return "redirect:/myLecture";
     }
 
-    @PostMapping("/upload")
-    public String uploadProject(HttpSession session,
-                                @RequestParam("fileTitle") String fileTitle,
-                                @RequestParam("fileDescription") String fileDescription,
-                                @RequestPart("projectFile") MultipartFile projectFile) throws IOException {
-        //打印日志；
-        log.info("上传的信息：文件名{}，文件简介{}，文件名{}", fileTitle, fileDescription, projectFile.getOriginalFilename());
-        String storePath = "D:\\MyProject\\weiketangFileStore\\";
-        boolean result = fileService.storeFile(fileDescription, fileTitle, projectFile, storePath, session);
-        return "myProject/myProject";
+    @GetMapping("/removeOneProjectById")
+    public String removeOneProjectById(){
+
+        String projectId = "null";   /*请前端传入项目的id*/
+        myProjectService.removeOneProjectById(projectId);
+
+        return "redirect:/myLecture";
     }
 
-    @GetMapping("/download/{fileName}")
-    public ResponseEntity<Resource> downloadProject(@PathVariable String fileName,
-                                                    HttpServletRequest request) {
-        Resource resource = fileService.loadFileAsResource(fileName);
+    @GetMapping("/getProjectsByPublisher")
+    public String getProjectsByPublisher(HttpSession session, Model model){
 
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        }
-        catch (IOException e) {
-            logger.error("无法获取文件类型", e);
-        }
-        if (contentType == null) {
-            contentType = "application/octet-stream";
-        }
+        String publisherId = session.getAttribute("userId").toString();
+        List<MyModel> projects = myProjectService.getProjectsByPublisher(publisherId);
+        model.addAttribute("projects1", projects);
 
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
+        return "redirect:/myLecture";
     }
+
+    @GetMapping("/getAllProjects")
+    public String getAllProjects(Model model){
+
+        List<MyModel> projects = myProjectService.getAllProjects();
+        model.addAttribute("projects2", projects);
+
+        return "redirect:/myLecture";
+    }
+
+    @GetMapping("/searchProjects")
+    public String searchProjects(Model model){
+
+        String inputStr = "null";   /*请前端传入用户输入的搜索内容*/
+        List<MyModel> projects = myProjectService.searchProjects(inputStr);
+        model.addAttribute("projects3", projects);
+
+        return "redirect:/myLecture";
+    }
+
+    @GetMapping("/collectOneProject")
+    public String collectOneProject(HttpSession session){
+
+        String projectId = "null";   /*请前端传入项目的id*/
+        String userId = session.getAttribute("userId").toString();
+        myProjectService.collectOneProject(projectId, userId);
+
+        return "redirect:/myLecture";
+    }
+
+    @GetMapping("/getFavorProjectsByUserId")
+    public String getFavorProjectsByUserId(HttpSession session, Model model){
+
+        String userId = session.getAttribute("userId").toString();
+        List<MyFavorModel> favorModels = myProjectService.getFavorProjectsByUserId(userId);
+        model.addAttribute("favorModels", favorModels);
+
+        return "redirect:/myLecture";
+    }
+
+    @GetMapping("/removeOneFavorProject")
+    public String removeOneFavorProject(HttpSession session){
+
+        String projectId = "null";   /*请前端传入项目的id*/
+        String userId = session.getAttribute("userId").toString();
+        myProjectService.removeOneFavorProject(projectId, userId);
+
+        return "redirect:/myLecture";
+    }
+
 
 }

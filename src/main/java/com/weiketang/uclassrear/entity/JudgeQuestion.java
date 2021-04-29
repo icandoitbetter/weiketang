@@ -1,16 +1,14 @@
 package com.weiketang.uclassrear.entity;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@Document(collection = "question")
 public class JudgeQuestion extends Question{
 
     public JudgeQuestion(){
-        this.type = "JudgeQuestion";
+        this.setQuestionType("JUDGE");
     }
 
-    public String toString(){
-        return this.question + " " + this.answer;
-    }
 }

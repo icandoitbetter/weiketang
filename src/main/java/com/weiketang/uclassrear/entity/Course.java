@@ -1,13 +1,13 @@
 package com.weiketang.uclassrear.entity;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-public class Course {
-    private String courseId;
-    private String teacherId;
-    private String courseTitle;
-    private String subject;
-    private String courseDescription;
-    private String term;
+@Document(collection = "model")
+public class Course extends MyModel {
+
+    public Course(){
+        this.setModelType("COURSE");
+    }
 }

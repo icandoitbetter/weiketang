@@ -8,13 +8,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("file")
 public class MyFile {
     @Id
-    private String fileId;
+    private String _id;
 
-    private String uploaderId;
-    private String uploaderDate;
-    private String fileTitle;
-    private long size;
-    private String fileName;
-    private String storePath;
-    private String fileDescription;
+    private String uploaderId = "null";
+    private String uploaderDate = "null";
+    private String fileTitle = "null";
+    private long size = 0;
+    private String fileName = "null";
+    private String description = "null";
+
+    private String modelType = "null";
+    private String modelId = "null";
+
+    /*存储路径：warehousePath + "\\" + modelType + "\\" + modelId + "\\" + fileName*/
 }

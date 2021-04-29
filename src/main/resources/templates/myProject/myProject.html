@@ -7,8 +7,6 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="#" type="image/png">
 
-    <title>Mail Compose</title>
-
     <link rel="stylesheet" type="text/css" href="js/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
 
     <!--html文件公共头部开始-->
@@ -43,14 +41,17 @@
                 <div class="compose-mail">
                     <form role="form-horizontal" th:action="@{/upload}" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="fileTitle" id="exampleInputEmail1" placeholder="   项目名称">
+                            <input type="text" class="form-control" name="fileTitle" id="exampleInputEmail1" placeholder="   文件标题">
                         </div>
 
                         <div class="compose-editor">
-                            <textarea class="wysihtml5 form-control" name="fileDescription" rows="9" placeholder="项目简介"></textarea>
-                            <input type="file" class="default" name="projectFile">
+                            <textarea class="wysihtml5 form-control" name="fileDescription" rows="9" placeholder="文件简介"></textarea>
+
                         </div>
                         <hr/>
+                        <div class="compose-btn">
+                            <input type="file" class="default" name="srcFile">
+                        </div>
                         <div class="compose-btn">
                             <button class="btn btn-primary btn-sm"><i class="fa fa-check"></i>提交</button>
                         </div>
