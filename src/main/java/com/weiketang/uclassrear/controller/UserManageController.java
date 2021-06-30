@@ -56,9 +56,9 @@ public class UserManageController {
     @GetMapping("/myLecture")
     public String myLecture(HttpSession session){
         if(session.getAttribute("userType").equals(new Student().getUserType())){
-            return "redirect:/myLecture";
+            return "myLecture/myLecture_student";
         }
-        return "redirect:/myLecture";
+        return "myLecture/myLecture_teacher";
     }
 
 }

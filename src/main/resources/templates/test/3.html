@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <!--html文件头部开始-->
+    <div th:replace="common :: commonheader"></div>
+    <!--html文件头部结束-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- 页面左侧部分开始-->
+    <div th:replace="common :: leftPart"></div>
+    <!-- 页面左侧部分结束-->
+
+    <!--主要内容开始-->
+    <div class="main-content" >
+
+        <!-- 页面头部开始-->
+        <div th:replace="common :: headPart"></div>
+        <!-- 页面头部结束-->
+
+        <!-- 页面标题开始-->
+        <div class="page-heading">
+            这里是页面标题部分。{Test!}
+        </div>
+        <!-- 页面标题结束-->
+
+        <!--页面正文开始-->
+        <div class="wrapper">
+
+            <section class="mail-list">
+                <div class="compose-mail">
+                    <form role="form-horizontal" th:action="@{/upload}" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="fileTitle" id="exampleInputEmail1" placeholder="   文件标题">
+                        </div>
+
+                        <div class="compose-editor">
+                            <textarea class="wysihtml5 form-control" name="fileDescription" rows="9" placeholder="文件简介"></textarea>
+
+                        </div>
+                        <hr/>
+                        <div class="compose-btn">
+                            <input type="file" class="default" name="srcFile">
+                        </div>
+                        <div class="compose-btn">
+                            <button class="btn btn-primary btn-sm"><i class="fa fa-check"></i>提交</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+
+        </div>
+        <!--页面正文结束-->
+
+        <!--页脚部分开始-->
+        <footer>
+            这里是页脚部分。
+        </footer>
+        <!--页脚部分结束-->
+
+    </div>
+    <!--主要内容结束-->
+</section>
+<!--html文件尾部开始-->
+<div th:replace="common :: commontail"></div>
+<!--html文件尾部结束-->
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <!--html文件头部开始-->
+    <div th:replace="common :: commonheader"></div>
+    <!--html文件头部结束-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- 页面左侧部分开始-->
+    <div th:replace="common :: leftPart"></div>
+    <!-- 页面左侧部分结束-->
+
+    <!--主要内容开始-->
+    <div class="main-content" >
+
+        <!-- 页面头部开始-->
+        <div th:replace="common :: headPart"></div>
+        <!-- 页面头部结束-->
+
+        <!-- 页面标题开始-->
+        <div class="page-heading">
+            这里是页面标题部分。{Test!}
+        </div>
+        <!-- 页面标题结束-->
+
+        <!--页面正文开始-->
+        <div class="wrapper">
+            这里是页面正文部分。
+            <div class="row">
+                <div class="col-sm-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            文件列表
+                            <span class="tools pull-right">
+                    <a href="javascript:;" class="fa fa-chevron-down"></a>
+                    <a href="javascript:;" class="fa fa-times"></a>
+                </span>
+                        </header>
+                        <div class="panel-body">
+                            <div class="adv-table">
+                                <table  class="display table table-bordered table-striped" id="dynamic-table">
+                                    <thead>
+                                    <tr>
+
+                                        <th>_id </th>
+                                        <th>description </th>
+                                        <th>fileName </th>
+                                        <th>fileTitle </th>
+                                        <th>modelId </th>
+                                        <th>modelType </th>
+                                        <th>size </th>
+                                        <th>uploaderDate </th>
+                                        <th>uploaderId </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="myFile, stat:${myFiles}">
+                                    <tr class="gradeX">
+
+                                        <td th:text="${myFile._id}"></td>
+                                        <td th:text="${myFile.description}"></td>
+                                        <td th:text="${myFile.fileName}"></td>
+                                        <td th:text="${myFile.fileTitle}"></td>
+                                        <td th:text="${myFile.modelId}"></td>
+                                        <td th:text="${myFile.modelType}"></td>
+                                        <td th:text="${myFile.size}"></td>
+                                        <td th:text="${myFile.uploaderDate}"></td>
+                                        <td th:text="${myFile.uploaderId}"></td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--页面正文结束-->
+
+        <!--页脚部分开始-->
+        <footer>
+            这里是页脚部分。
+        </footer>
+        <!--页脚部分结束-->
+
+    </div>
+    <!--主要内容结束-->
+</section>
+<!--html文件尾部开始-->
+<div th:replace="common :: commontail"></div>
+<!--html文件尾部结束-->
+</body>
+</html>

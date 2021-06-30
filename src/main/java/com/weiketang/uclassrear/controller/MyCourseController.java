@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class MyCourseController {
@@ -19,100 +21,102 @@ public class MyCourseController {
     public String createOneCourse(HttpSession session){
 
         String teacherId = session.getAttribute("userId").toString();
-        Course course = new Course();   /*请前端传入用户输入的课程信息；*/
+        Course course = new Course();   /*请前端传入用户输入的课程信息*/
+
+        /* 测试数据 */
+        Random r = new Random();
+        int ran = r.nextInt(5);
+        course = Creator.courseCreator(ran);
+        /* 测试数据 */
+
         myCourseService.createOneCourse(teacherId, course);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/removeOneCourseById")
-    public String removeOneCourseById(){
+    @GetMapping("/removeOneCourseById/{courseId}")
+    public String removeOneCourseById(@PathVariable("courseId") String course_Id){
 
-        String courseId = "null";   /*请前端传入课程的id*/
+        String courseId = course_Id;   /*请前端传入课程的id*/
         myCourseService.removeOneCourseById(courseId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/joinOneCourse")
-    public String joinOneCourse(HttpSession session){
+    @GetMapping("/joinOneCourse/{courseId}")
+    public String joinOneCourse(@PathVariable("courseId") String course_Id, HttpSession session){
 
         String studentId = session.getAttribute("userId").toString();
-        String courseId = "null";   /*请前端传入课程的id*/
+        String courseId = course_Id;   /*请前端传入课程的id*/
         myCourseService.joinOneCourse(studentId, courseId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/exitOneCourse")
-    public String exitOneCourse(HttpSession session){
+    @GetMapping("/exitOneCourse/{courseId}")
+    public String exitOneCourse(@PathVariable("courseId") String course_Id, HttpSession session){
 
         String studentId = session.getAttribute("userId").toString();
-        String courseId = "null";   /*请前端传入课程的id*/
+        String courseId = course_Id;   /*请前端传入课程的id*/
         myCourseService.exitOneCourse(studentId, courseId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/getCoursesByTeacher")
+    @GetMapping("/getCoursesByUserId")
     public String getCoursesByTeacher(HttpSession session, Model model){
 
-        String teacherId = session.getAttribute("userId").toString();
-        List<MyModel> courses = myCourseService.getCoursesByTeacher(teacherId);
-        model.addAttribute("courses1", courses);
+        String userId = session.getAttribute("userId").toString();
+        String userType = session.getAttribute("userType").toString();
 
-        return "redirect:/myLecture";
-    }
+        List<MyModel> courses = null;
+        if(userType.equals(new Student().getUserType())){
+            courses = myCourseService.getCoursesByStudent(userId);
+        }else{
+            courses = myCourseService.getCoursesByTeacher(userId);
+        }
+        model.addAttribute("courses", courses);
 
-    @GetMapping("/getCoursesByStudent")
-    public String getCoursesByStudent(HttpSession session, Model model){
-
-        String studentId = session.getAttribute("userId").toString();
-        List<MyModel> courses = myCourseService.getCoursesByStudent(studentId);
-        model.addAttribute("courses2", courses);
-
-        return "redirect:/myLecture";
+        return "test/1";
     }
 
     @GetMapping("/getAllCourses")
     public String getAllCourses(Model model){
 
         List<MyModel> courses = myCourseService.getAllCourses();
-        model.addAttribute("courses3", courses);
+        model.addAttribute("courses", courses);
 
-        return "redirect:/myLecture";
+        return "test/1";
     }
 
-    @GetMapping("/getStudentsByCourse")
-    public String getStudentsByCourse(Model model){
+    @GetMapping("/getStudentsByCourse/{courseId}")
+    public String getStudentsByCourse(@PathVariable("courseId") String course_Id, Model model){
 
-        String courseId = "null";   /*请前端传入课程的id*/
+        String courseId = course_Id;   /*请前端传入课程的id*/
         List<User> students = myCourseService.getStudentsByCourse(courseId);
         model.addAttribute("students", students);
 
-        return "redirect:/myLecture";
+        return "test/2";
     }
 
-    @GetMapping("/searchCourses")
-    public String searchCourses(Model model){
+    @GetMapping("/searchCourses/{inputStr}")
+    public String searchCourses(@PathVariable("inputStr") String inputStr, Model model){
 
-        String inputStr = "null";   /*请前端传入用户输入的搜索内容*/
-        List<MyModel> courses = myCourseService.searchCourses(inputStr);
-        model.addAttribute("courses4", courses);
+        String input = inputStr;   /*请前端传入用户输入的搜索关键字*/
+        List<MyModel> courses = myCourseService.searchCourses(input);
+        model.addAttribute("courses", courses);
 
-        return "redirect:/myLecture";
+        return "test/1";
     }
 
+    @GetMapping("/collectOneCourse/{courseId}")
+    public String collectOneCourse(@PathVariable("courseId") String course_Id, HttpSession session){
 
-
-    @GetMapping("/collectOneCourse")
-    public String collectOneCourse(HttpSession session){
-
-        String courseId = "null";   /*请前端传入课程的id*/
+        String courseId = course_Id;   /*请前端传入课程的id*/
         String userId = session.getAttribute("userId").toString();
         myCourseService.collectOneCourse(courseId, userId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/getFavorCoursesByUserId")
@@ -122,16 +126,16 @@ public class MyCourseController {
         List<MyFavorModel> favorModels = myCourseService.getFavorCoursesByUserId(userId);
         model.addAttribute("favorModels", favorModels);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/removeOneFavorCourse")
-    public String removeOneFavorCourse(HttpSession session){
+    @GetMapping("/removeOneFavorCourse/{courseId}")
+    public String removeOneFavorCourse(@PathVariable("courseId") String course_Id, HttpSession session){
 
-        String courseId = "null";   /*请前端传入课程的id*/
+        String courseId = course_Id;   /*请前端传入课程的id*/
         String userId = session.getAttribute("userId").toString();
         myCourseService.removeOneFavorCourse(courseId, userId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 }

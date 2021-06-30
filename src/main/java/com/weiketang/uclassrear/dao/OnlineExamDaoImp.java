@@ -101,6 +101,7 @@ public class OnlineExamDaoImp implements OnlineExamDao {
     @Override
     public QuestionRecord createOneQuestionInPaper(Question question, String examId,
                                                    String authorId, String questionType) {
+
         /*1.检查exam是否已创建，若否，则返回*/
         if(this.getOneExamByExamId(examId) == null) return null;
 

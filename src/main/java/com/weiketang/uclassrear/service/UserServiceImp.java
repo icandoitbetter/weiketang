@@ -15,28 +15,33 @@ public class UserServiceImp implements UserService{
     UserDao userDao;
     @Override
     public User loginCheck(String userId, String password) {
+        if(userId == null || password == null) return null;
         return userDao.loginCheck(userId, password);
     }
 
     @Override
     public User updateUserInfo(User user) {
+        if(user == null) return null;
         return userDao.updateUserInfo(user);
     }
 
     @Override
     public User loginStudent(User user) {
+        if(user == null) return null;
         user.setUserType(new Student().getUserType());
         return userDao.insertOneUser(user);
     }
 
     @Override
     public User loginTeacher(User user) {
+        if(user == null) return null;
         user.setUserType(new Teacher().getUserType());
         return userDao.insertOneUser(user);
     }
 
     @Override
     public User getCurrentUserInfo(HttpSession session) {
+        if(session == null) return null;
         return userDao.getOneUserById(session.getAttribute("userId").toString());
     }
 }

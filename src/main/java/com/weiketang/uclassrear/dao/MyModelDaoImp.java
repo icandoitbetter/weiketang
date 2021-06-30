@@ -104,9 +104,11 @@ public class MyModelDaoImp implements MyModelDao {
     }
 
     @Override
-    public List<MyModel> getModelsByPublisher(String publisherId) {
+    public List<MyModel> getModelsByPublisher(String publisherId, String modelType) {
         return mongoTemplate.find(
-                new Query(Criteria.where("publisherId").is(publisherId)),
+                new Query(Criteria.where("publisherId").is(publisherId)
+                        .and("modelType").is(modelType)
+                ),
                 MyModel.class
         );
     }

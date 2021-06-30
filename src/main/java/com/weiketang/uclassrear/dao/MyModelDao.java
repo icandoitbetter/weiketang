@@ -12,7 +12,7 @@ public interface MyModelDao {
     ModelJoinRecord joinOneModel(String participatorId, String modelId);
     DeleteResult exitOneModel(String participatorId, String modelId);
 
-    List<MyModel> getModelsByPublisher(String publisherId);
+    List<MyModel> getModelsByPublisher(String publisherId, String modelType);
     List<MyModel> getModelsByParticipator(String participatorId, String modelType);
     List<User> getParticipatorsByModel(String modelId);
     List<MyModel> searchModels(String inputStr, String modelType);

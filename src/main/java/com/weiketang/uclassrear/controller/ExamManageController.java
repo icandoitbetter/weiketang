@@ -3,45 +3,56 @@ package com.weiketang.uclassrear.controller;
 import com.weiketang.uclassrear.entity.*;
 import com.weiketang.uclassrear.service.OnlineExamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
+@Controller
 public class ExamManageController {
     @Autowired
     OnlineExamService onlineExamService;
 
-    @GetMapping("/createOneExam")
-    public String createOneExam(HttpSession session){
+    @GetMapping("/createOneExam/{courseId}")
+    public String createOneExam(@PathVariable("courseId") String course_id, HttpSession session){
 
-        Exam exam = new Exam();     /*请前端传入用户输入的exam信息*/
-        String courseId = "null";   /*请前端传入exam所属的课程的id*/
+        Exam exam = new Exam();         /*请前端传入用户输入的exam信息*/
+        String courseId = course_id;    /*请前端传入exam所属的课程的id*/
+
+        /*测试数据*/
+        Random r = new Random();
+        int ran = r.nextInt(5);
+        exam = Creator.ExamCreator(ran);
+        /*测试数据*/
+
         String publisherId = session.getAttribute("userId").toString();
         onlineExamService.createOneExam(exam, publisherId, courseId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/removeOneExam")
-    public String removeOneExam(){
+    @GetMapping("/removeOneExam/{examId}")
+    public String removeOneExam(@PathVariable("examId") String exam_id){
 
-        String examId = "null"; /*请前端传入待删除的exam的id*/
+        String examId = exam_id; /*请前端传入待删除的exam的id*/
         onlineExamService.removeOneExam(examId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/getExamsByCourseId")
-    public String getExamsByCourseId(Model model){
+    @GetMapping("/getExamsByCourseId/{courseId}")
+    public String getExamsByCourseId(@PathVariable("courseId") String course_id, Model model){
 
-        String courseId = "null";   /*请前端传入exam所属的课程的id*/
+        String courseId = course_id;   /*请前端传入exam所属的课程的id*/
         List<Exam> exams = onlineExamService.getExamsByCourseId(courseId);
-        model.addAttribute("exams1", exams);
+        model.addAttribute("exams", exams);
 
-        return "redirect:/myLecture";
+        return "test/5";
     }
 
     @GetMapping("/getExamsByStudentId")
@@ -49,45 +60,53 @@ public class ExamManageController {
 
         String studentId = session.getAttribute("userId").toString();
         List<Exam> exams = onlineExamService.getExamsByStudentId(studentId);
-        model.addAttribute("exams2", exams);
+        model.addAttribute("exams", exams);
 
-        return "redirect:/myLecture";
+        return "test/5";
     }
 
-    @GetMapping("/createOneExam")
-    public String getOneExamByExamId(Model model){
+    @GetMapping("/getOneExamByExamId/{examId}")
+    public String getOneExamByExamId(@PathVariable("examId") String exam_id, Model model){
 
-        String examId = "null";     /*请前端传入待查找的exam的id*/
+        String examId = exam_id;     /*请前端传入待查找的exam的id*/
         Exam exam = onlineExamService.getOneExamByExamId(examId);
         model.addAttribute("exam3", exam);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/createOneQuestionInPaper")
-    public String createOneQuestionInPaper(HttpSession session){
+    @GetMapping("/createOneQuestionInPaper/{examId}")
+    public String createOneQuestionInPaper(@PathVariable("examId") String exam_id, HttpSession session){
 
         /*请前端传入下列内容：examId、question、questionType、answerList*/
-        String examId = "null";                 /*新建试题所属的考试的id*/
+        String examId = exam_id;                 /*新建试题所属的考试的id*/
         Question question = new Question();     /*新建试题的内容*/
         String questionType = "null";           /*题型（单选、多选、填空、判断）*/
         List<String> answerList = new LinkedList<>(); /*答案*/
 
-        String authorId = session.getAttribute("userId").toString();
+        /*测试数据*/
+        Random r = new Random();
+        int ran = r.nextInt(20);
+        question = Creator.questionCreator(ran);
+        questionType = question.getQuestionType();
+        answerList.add(question.getAnswer());
+        /*测试数据*/
 
+        String authorId = session.getAttribute("userId").toString();
         onlineExamService.createOneQuestionInPaper(examId, question, authorId, questionType, answerList);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/removeOneQuestionFromPaper")
-    public String removeOneQuestionFromPaper(){
+    @GetMapping("/removeOneQuestionFromPaper/{examId}/{questionId}")
+    public String removeOneQuestionFromPaper(@PathVariable("examId") String exam_id,
+                                             @PathVariable("questionId") String question_id){
 
-        String examId = "null";         /*请前端传入待删除的题目所属的考试的id*/
-        String questionId = "null";     /*请前端传入待删除的题目的id*/
+        String examId = exam_id;             /*请前端传入待删除的题目所属的考试的id*/
+        String questionId = question_id;     /*请前端传入待删除的题目的id*/
         onlineExamService.removeOneQuestionFromPaper(examId, questionId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/answerOneQuestion")
@@ -99,13 +118,13 @@ public class ExamManageController {
         String respondentId = session.getAttribute("userId").toString();
         onlineExamService.answerOneQuestion(examId, questionId, respondentId, responseList);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
-    @GetMapping("/getOnePaperByExamId")
-    public String getOnePaperByExamId(Model model){
+    @GetMapping("/getOnePaperByExamId/{examId}")
+    public String getOnePaperByExamId(@PathVariable("examId") String exam_id, Model model){
 
-        String examId = "null";     /*请前端传入当前考试的id*/
+        String examId = exam_id;     /*请前端传入当前考试的id*/
         List<Question> sin = onlineExamService.getOnePartOfPaper(
                 examId, new SingleChoiceQuestion().getQuestionType());
         List<Question> mul = onlineExamService.getOnePartOfPaper(
@@ -120,13 +139,13 @@ public class ExamManageController {
         model.addAttribute("fillQue", fill);
         model.addAttribute("judgeQue", judge);
 
-        return "redirect:/myLecture";
+        return "test/6";
     }
 
-    @GetMapping("/getOneAnswerSheet")
-    public String getOneAnswerSheet(HttpSession session, Model model){
+    @GetMapping("/getOneAnswerSheet/{examId}")
+    public String getOneAnswerSheet(@PathVariable("examId") String exam_id, HttpSession session, Model model){
 
-        String examId = "null";     /*请前端传入当前考试的id*/
+        String examId = exam_id;     /*请前端传入当前考试的id*/
         String respondentId = session.getAttribute("userId").toString();
 
         List<ResponseRecord> sin = onlineExamService.getOnePartOfAnswerSheet(
@@ -143,7 +162,7 @@ public class ExamManageController {
         model.addAttribute("fillRe", fill);
         model.addAttribute("judgeRe", judge);
 
-        return "redirect:/myLecture";
+        return "test/7";
     }
 
 }

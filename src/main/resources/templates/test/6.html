@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords" content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="image/png">
+
+    <!--html文件头部开始-->
+    <div th:replace="common :: commonheader"></div>
+    <!--html文件头部结束-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <!-- 页面左侧部分开始-->
+    <div th:replace="common :: leftPart"></div>
+    <!-- 页面左侧部分结束-->
+
+    <!--主要内容开始-->
+    <div class="main-content" >
+
+        <!-- 页面头部开始-->
+        <div th:replace="common :: headPart"></div>
+        <!-- 页面头部结束-->
+
+        <!-- 页面标题开始-->
+        <div class="page-heading">
+            这里是页面标题部分。{Test!}
+        </div>
+        <!-- 页面标题结束-->
+
+        <!--页面正文开始-->
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <header class="panel-heading">
+                        单选题（每题2分）
+                        <span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                            <a class="fa fa-times" href="javascript:;"></a>
+                        </span>
+                    </header>
+                    <section class="panel" th:each="sinQuestion,stat:${sinQue}">
+                        <div class="panel-body" >
+                            <div class="row" >
+                                <div class="col-md-6" >
+                                    <form class="form-horizontal bucket-form" method="get" >
+                                        <h5 th:text="${sinQuestion.content}"></h5>
+                                        <div class="form-group">
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${sinQuestion.optA}">Black Checkbox </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal-red single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${sinQuestion.optB}">Red Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal-green single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${sinQuestion.optC}">Green Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal-blue single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${sinQuestion.optD}">Blue Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <header class="panel-heading">
+                        多选题（每题2分）
+                        <span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                            <a class="fa fa-times" href="javascript:;"></a>
+                        </span>
+                    </header>
+                    <section class="panel" th:each="mulQuestion,stat:${mulQue}">
+                        <div class="panel-body" >
+                            <div class="row" >
+                                <div class="col-md-6" >
+                                    <form class="form-horizontal bucket-form" method="get" >
+                                        <h5 th:text="${mulQuestion.content}"></h5>
+                                        <div class="form-group">
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${mulQuestion.optA}">Black Checkbox </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal-red single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${mulQuestion.optB}">Red Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal-green single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${mulQuestion.optC}">Green Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal-blue single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="${mulQuestion.optD}">Blue Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <header class="panel-heading">
+                        填空题（每题2分）
+                        <span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                            <a class="fa fa-times" href="javascript:;"></a>
+                        </span>
+                    </header>
+                    <section class="panel" th:each="fillQuestion,stat:${fillQue}">
+                        <div class="panel-body" >
+                            <div class="row" >
+                                <div class="col-md-6" >
+                                    <form class="form-horizontal bucket-form" method="get" >
+                                        <h5 th:text="${fillQuestion.content}"></h5>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="answer" id="exampleInputEmail1" placeholder="   填写答案">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <header class="panel-heading">
+                        判断题（每题2分）
+                        <span class="tools pull-right">
+                            <a class="fa fa-chevron-down" href="javascript:;"></a>
+                            <a class="fa fa-times" href="javascript:;"></a>
+                        </span>
+                    </header>
+                    <section class="panel" th:each="judgeQuestion,stat:${judgeQue}">
+                        <div class="panel-body" >
+                            <div class="row" >
+                                <div class="col-md-6" >
+                                    <form class="form-horizontal bucket-form" method="get" >
+                                        <h5 th:text="${judgeQuestion.content}"></h5>
+                                        <div class="form-group">
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="对">Black Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-9 icheck ">
+                                                <div class="minimal single-row">
+                                                    <div class="checkbox ">
+                                                        <input type="checkbox" checked>
+                                                        <label th:text="错">Black Checkbox </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <!--页面正文结束-->
+
+        <!--页脚部分开始-->
+        <footer>
+            这里是页脚部分。
+        </footer>
+        <!--页脚部分结束-->
+
+    </div>
+    <!--主要内容结束-->
+</section>
+<!--html文件尾部开始-->
+<div th:replace="common :: commontail"></div>
+<!--html文件尾部结束-->
+</body>
+</html>

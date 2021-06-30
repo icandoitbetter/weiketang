@@ -24,7 +24,7 @@ public class MyProjectController {
         MyProject project = new MyProject();   /*请前端传入用户输入的项目信息；*/
         myProjectService.createOneProject(publisherId, project);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/removeOneProjectById")
@@ -33,7 +33,7 @@ public class MyProjectController {
         String projectId = "null";   /*请前端传入项目的id*/
         myProjectService.removeOneProjectById(projectId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/getProjectsByPublisher")
@@ -43,7 +43,7 @@ public class MyProjectController {
         List<MyModel> projects = myProjectService.getProjectsByPublisher(publisherId);
         model.addAttribute("projects1", projects);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/getAllProjects")
@@ -52,7 +52,7 @@ public class MyProjectController {
         List<MyModel> projects = myProjectService.getAllProjects();
         model.addAttribute("projects2", projects);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/searchProjects")
@@ -62,7 +62,7 @@ public class MyProjectController {
         List<MyModel> projects = myProjectService.searchProjects(inputStr);
         model.addAttribute("projects3", projects);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/collectOneProject")
@@ -72,7 +72,7 @@ public class MyProjectController {
         String userId = session.getAttribute("userId").toString();
         myProjectService.collectOneProject(projectId, userId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/getFavorProjectsByUserId")
@@ -82,7 +82,7 @@ public class MyProjectController {
         List<MyFavorModel> favorModels = myProjectService.getFavorProjectsByUserId(userId);
         model.addAttribute("favorModels", favorModels);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
     @GetMapping("/removeOneFavorProject")
@@ -92,7 +92,7 @@ public class MyProjectController {
         String userId = session.getAttribute("userId").toString();
         myProjectService.removeOneFavorProject(projectId, userId);
 
-        return "redirect:/myLecture";
+        return "redirect:/home";
     }
 
 

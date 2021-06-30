@@ -32,6 +32,8 @@ public class MyFileServiceImp implements MyFileService{
     @Override
     public MyFile getOneFileFromClient(MultipartFile file, MyFile fileInfo,
                                        String modelId, String uploaderId) throws IOException {
+        if(file == null || fileInfo == null ||
+                modelId == null || uploaderId == null) return null;
         return myFileDao.addFile(file, fileInfo, modelId, uploaderId);
     }
 
@@ -39,6 +41,8 @@ public class MyFileServiceImp implements MyFileService{
     public ResponseEntity<Resource> sendOneFileToClient(HttpServletRequest request,
                                                         String modelId,
                                                         String fileName) throws IOException {
+        if(request == null || modelId == null || fileName == null) return null;
+
         /*1.从服务器本地获取客户端指定下载的文件*/
         Resource resource = this.getFileAsResource(modelId, fileName);
         if(resource == null) return null;
@@ -63,25 +67,31 @@ public class MyFileServiceImp implements MyFileService{
 
     @Override
     public DeleteResult removeOneFile(String modelId, String fileName) {
+        if(modelId == null || fileName == null) return null;
         return myFileDao.removeOneFile(modelId, fileName);
     }
 
     @Override
     public List<MyFile> getFilesByModelId(String modelId) {
+        if(modelId == null) return null;
         return myFileDao.getFilesByModelId(modelId);
     }
 
     @Override
     public List<MyFile> getFilesByUploaderId(String uploaderId) {
+        if(uploaderId == null) return null;
         return myFileDao.getFilesByUploaderId(uploaderId);
     }
 
     @Override
     public MyFile getOneFileByFileName(String modelId, String fileName) {
+        if(modelId == null || fileName == null) return null;
         return myFileDao.getOneFileByFileName(modelId, fileName);
     }
 
     private Resource getFileAsResource(String modelId, String fileName) {
+        if(modelId == null || fileName == null) return null;
+
         if(myFileDao.getOneFileByFileName(modelId, fileName) == null) {
             return null;
         }
